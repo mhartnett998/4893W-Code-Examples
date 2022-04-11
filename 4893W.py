@@ -21,7 +21,7 @@ np.random.seed(4893) # Setting the same seed does not produce
 
 X = np.random.normal(loc = mu, scale = sigma, size = (n,p-1))
 X_1 = np.array([1]*n).reshape(n,)
-X = np.insert(X, 0, X_1, axis=1)
+X = np.insert(X , 0, X_1, axis=1)
 
 ## The response Y will be given by X %*% beta.star + e
 ## X is the design matrix defined above
@@ -30,6 +30,17 @@ X = np.insert(X, 0, X_1, axis=1)
 
 beta_star = [3,1,0,-5,2]
 Y = X.dot(beta_star) + np.random.randn(n)
+
+## Here we will calculate beta.hat by hand
+## Later we will compare to the results produced my lm()
+## Recall that beta.hat = (XtX)^-1 %*% XtY
+
+XtXinv = np.linalg.inv(np.transpose(X).dot(X))
+XtY = np.transpose(X).dot(Y)
+
+beta_hat = XtXinv.dot(XtY)
+
+print(beta_star, '\n', beta_hat)
 
 ## Here we will calculate beta.hat by hand
 ## Pandas is used for data manipulation
