@@ -1,3 +1,4 @@
+/* We use the sakila schema that came with MySQK */
 /* I want to find films of actors whose last names start with A or F */
 SELECT 
   a.actor_id as 'ID',
